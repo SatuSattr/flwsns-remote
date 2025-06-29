@@ -11,5 +11,5 @@
     "input": "ientry.php",
     "output": "oentry.php"
   },
-  "pinger": "pinger.php"
+  "pinger": "/pinger.php"
 }
