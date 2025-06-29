@@ -1,0 +1,14 @@
+{
+  "main_url": "ux.appcloud.id",
+  "auth": {
+    "path": "/auth/",
+    "exit": "exit.php",
+    "update": "update.php",
+    "auth": "auth.php"
+  },
+  "catcher": {
+    "path": "/catcher/",
+    "input": "ientry.php",
+    "output": "oentry.php"
+  }
+}
