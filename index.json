@@ -1,5 +1,7 @@
 {
+  "version": "1.0.0",
   "main_url": "ux.appcloud.id",
+  "pinger": "/pinger.php",
   "auth": {
     "path": "/auth/",
     "exit": "exit.php",
@@ -10,6 +12,5 @@
     "path": "/catcher/",
     "input": "ientry.php",
     "output": "oentry.php"
-  },
-  "pinger": "/pinger.php"
+  }
 }
