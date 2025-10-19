@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Coins 5",
+    "price": 5000,
+    "disc_price": -1,
+    "min_qty": 1,
+    "max_qty": 100,
+    "recommended": 0,
+    "best_deal": 0,
+    "display_item": "minecraft:gold_nugget",
+    "active": 1
+  },
+  {
+    "id": 2,
+    "name": "Coins 10",
+    "price": 10000,
+    "disc_price": 9500,
+    "min_qty": 1,
+    "max_qty": 100,
+    "recommended": 0,
+    "best_deal": 0,
+    "display_item": "minecraft:gold_nugget",
+    "active": 1
+  },
+  {
+    "id": 3,
+    "name": "Coins 25",
+    "price": 25000,
+    "disc_price": 23500,
+    "min_qty": 1,
+    "max_qty": 100,
+    "recommended": 1,
+    "best_deal": 0,
+    "display_item": "minecraft:gold_nugget",
+    "active": 1
+  },
+  {
+    "id": 4,
+    "name": "Coins 50",
+    "price": 50000,
+    "disc_price": 46000,
+    "min_qty": 1,
+    "max_qty": 100,
+    "recommended": 0,
+    "best_deal": 1,
+    "display_item": "minecraft:gold_nugget",
+    "active": 1
+  }
+]
