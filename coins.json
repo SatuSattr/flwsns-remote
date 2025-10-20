@@ -8,7 +8,7 @@
     "max_qty": 100,
     "recommended": false,
     "best_deal": false,
-    "display_item": "minecraft:gold_nugget",
+    "display_item": "cskull:ebda5f31937b2ff755271d97f01be84d52a407b36ca77451856162ac6cfbb34f",
     "show": true
   },
   {
@@ -20,7 +20,7 @@
     "max_qty": 100,
     "recommended": false,
     "best_deal": false,
-    "display_item": "cskull:ebda5f31937b2ff755271d97f01be84d52a407b36ca77451856162ac6cfbb34f",
+    "display_item": "cskull:3d24dc58069c1212b529a4ae5d4e73be0990d46fe9371b1f79e8164b42859ac8",
     "show": true
   },
   {
@@ -32,7 +32,7 @@
     "max_qty": 100,
     "recommended": true,
     "best_deal": false,
-    "display_item": "cskull:3d24dc58069c1212b529a4ae5d4e73be0990d46fe9371b1f79e8164b42859ac8",
+    "display_item": "cskull:84b32710cea560854e3fac192f20a633f729afa02de4b075fefb680b301658e0",
     "show": true
   },
   {
