@@ -9,7 +9,7 @@
     "recommended": 0,
     "best_deal": 0,
     "display_item": "minecraft:gold_nugget",
-    "active": 1
+    "show": 1
   },
   {
     "id": 2,
@@ -21,7 +21,7 @@
     "recommended": 0,
     "best_deal": 0,
     "display_item": "minecraft:gold_nugget",
-    "active": 1
+    "show": 1
   },
   {
     "id": 3,
@@ -33,7 +33,7 @@
     "recommended": 1,
     "best_deal": 0,
     "display_item": "minecraft:gold_nugget",
-    "active": 1
+    "show": 1
   },
   {
     "id": 4,
@@ -45,6 +45,6 @@
     "recommended": 0,
     "best_deal": 1,
     "display_item": "minecraft:gold_nugget",
-    "active": 1
+    "show": 1
   }
 ]
