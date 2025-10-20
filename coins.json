@@ -6,10 +6,10 @@
     "disc_price": -1,
     "min_qty": 1,
     "max_qty": 100,
-    "recommended": 0,
-    "best_deal": 0,
+    "recommended": false,
+    "best_deal": false,
     "display_item": "minecraft:gold_nugget",
-    "show": 1
+    "show": true
   },
   {
     "id": 2,
@@ -18,10 +18,10 @@
     "disc_price": 9500,
     "min_qty": 1,
     "max_qty": 100,
-    "recommended": 0,
-    "best_deal": 0,
+    "recommended": false,
+    "best_deal": false,
     "display_item": "minecraft:gold_nugget",
-    "show": 1
+    "show": true
   },
   {
     "id": 3,
@@ -30,10 +30,10 @@
     "disc_price": 23500,
     "min_qty": 1,
     "max_qty": 100,
-    "recommended": 1,
-    "best_deal": 0,
+    "recommended": true,
+    "best_deal": false,
     "display_item": "minecraft:gold_nugget",
-    "show": 1
+    "show": true
   },
   {
     "id": 4,
@@ -42,9 +42,9 @@
     "disc_price": 46000,
     "min_qty": 1,
     "max_qty": 100,
-    "recommended": 0,
-    "best_deal": 1,
+    "recommended": false,
+    "best_deal": true,
     "display_item": "minecraft:gold_nugget",
-    "show": 1
+    "show": true
   }
 ]
