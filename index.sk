@@ -1,0 +1,135 @@
+import:
+    org.bukkit.Bukkit
+    org.bukkit.Material
+    org.bukkit.inventory.ItemStack
+    org.bukkit.inventory.meta.SkullMeta
+    org.bukkit.profile.PlayerProfile
+    org.bukkit.profile.PlayerTextures
+    java.net.URL
+    java.io.File
+    java.io.FileReader
+    java.util.UUID
+    java.io.InputStreamReader
+    java.io.BufferedReader
+    java.net.HttpURLConnection
+    com.google.gson.JsonArray
+    com.google.gson.JsonElement
+    com.google.gson.JsonObject
+    com.google.gson.JsonParser
+
+options:
+    gui-background: true
+    gui-background-1: air # set to air
+    gui-background-2: air # set to air
+    recommended-badge: "&a(Recommended!) "
+    best-badge: "&d(Best Deal!) "
+
+command cc:
+    trigger:
+        loop 50 times:
+            send " "
+
+command tesd:
+    permission: op
+    trigger:
+        flowcoinsgui(player, 4)
+        
+
+function skull(url: string, am: integer = 1) :: item:
+    set {_url} to "https://textures.minecraft.net/texture/%{_url}%"
+    set {_head} to new ItemStack(Material.PLAYER_HEAD, {_am})
+    set {_meta} to {_head}.getItemMeta()
+    return {_head} if {_meta} is null
+    set {_profile} to Bukkit.createProfile(UUID.randomUUID())
+    set {_textures} to {_profile}.getTextures()
+    {_textures}.setSkin(new URL({_url}))
+    {_profile}.setTextures({_textures})
+    {_meta}.setPlayerProfile({_profile})
+    {_head}.setItemMeta({_meta})
+    set name of {_head} to "&eCustom Head"
+    return {_head}
+
+function fetchJsonFromUrl(url: string) :: object:
+    set {_url} to new URL({_url})
+    set {_conn} to {_url}.openConnection()
+    {_conn}.setRequestMethod("GET")
+    {_conn}.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36")
+    set {_reader} to try new BufferedReader(new InputStreamReader({_conn}.getInputStream()))
+    return JsonParser.parseReader({_reader}).getAsJsonArray()
+
+function fetchJsonFromPath(url: string) :: object:
+    set {_reader} to new FileReader(new File({_url}))
+    return JsonParser.parseReader({_reader}).getAsJsonArray()
+
+function flowcoinsgui(player: player, category: integer):
+    set {_json} to fetchJsonFromPath("plugins/skript/scripts/coins.json")
+    set {_total_coins} to {_json}.size()
+    set {_rows} to ceil({_total_coins} / 7) + 2
+    if {_rows} < 3:
+        set {_rows} to 3
+    if {_rows} > 6:
+        set {_rows} to 6
+
+    set {_gui} to chest inventory with {_rows} row named "Coins Topup"
+
+    if {@gui-background} is true:
+        loop {_rows} * 9 times:
+            set slot (loop-counter - 1) of {_gui} to {@gui-background-1} named " " if mod(loop-counter, 1) = 0
+            set slot (loop-counter - 1) of {_gui} to {@gui-background-2} named " " if mod(loop-counter, 2) = 0
+
+    set {_first_slot} to 10
+    set {_slot_index} to 0
+
+    loop {_json}.size() times:
+        set {_c} to {_json}.get(loop-counter - 1).getAsJsonObject()
+        set {_id} to {_c}.get("id").getAsInt()
+        set {_name} to {_c}.get("name").getAsString()
+        set {_price} to {_c}.get("price").getAsInt()
+        set {_disc_price} to {_c}.get("disc_price").getAsInt()
+        set {_min_qty} to {_c}.get("min_qty").getAsInt()
+        set {_max_qty} to {_c}.get("max_qty").getAsInt()
+        set {_recommended} to {_c}.get("recommended").getAsBoolean()
+        set {_best_deal} to {_c}.get("best_deal").getAsBoolean()
+        set {_display_item} to {_c}.get("display_item").getAsString()
+        if {_display_item}.contains("cskull:"):
+            replace all "cskull:" with "" in {_display_item}
+            set {_display_item} to skull({_display_item}, 1)
+        else:
+            set {_display_item} to itemtype from key {_display_item}
+        set {_show} to {_c}.get("show").getAsBoolean()
+        if {_slot_index} = 0:
+            set {_remaining} to {_json}.size() - (loop-counter - 1)
+            if {_remaining} <= 7:
+                set {_current_count} to {_remaining}
+            else:
+                set {_current_count} to 7
+            set {_center_start} to {_first_slot} + floor(7 / 2) - floor({_current_count} / 2)
+
+        set slot {_center_start} + {_slot_index} of {_gui} to {_display_item} named formatted "&r%{_name}% &r%renderRecommendedBadge({_recommended})%%renderBestBadge({_best_deal})%" with lore "%nl%%renderPrice({_price}, {_disc_price})%"
+        add 1 to {_slot_index}
+
+        if {_slot_index} = 7:
+            set {_slot_index} to 0
+            add 9 to {_first_slot}
+
+    set slot ({_rows} * 9)-9 of {_gui} to {_player}'s skull named "&f%{_player}% &8(You)" with lore "&6🪙 Coins: &f123%nl% "
+    set slot ({_rows} * 9) - 1 of {_gui} to skull("2705fd94a0c431927fb4e639b0fcfb49717e412285a02b439e0112da22b2e2ec") named "&7FAQ" with lore "&7Select the number of coins%nl%&7from the options above%nl%&7to add coins to your account."
+
+    # set slot ({_rows} * 9)-9 of {_gui} to {_player}'s skull
+
+    open {_gui} to {_player}
+
+
+function renderRecommendedBadge(b: boolean) :: string:
+    return {@recommended-badge} if {_b} = true
+    return "" if {_b} = false
+
+function renderBestBadge(b: boolean) :: string:
+    return {@best-badge} if {_b} = true
+    return "" if {_b} = false
+
+function renderPrice(pr: integer, dpr: integer) :: string:
+    return "&8&mRp%formatNumber({_pr})%%nl%&aRp%formatNumber({_dpr})% &e(-23%%)" if {_dpr} >= 0
+    return "&aRp%formatNumber({_pr})% &e(-23%%)" if {_dpr} = -1
+    
+
