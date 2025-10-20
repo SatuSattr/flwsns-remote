@@ -1,5 +1,17 @@
 [
   {
+    "id": 8,
+    "name": "Coins 1",
+    "price": 1000,
+    "disc_price": -1,
+    "min_qty": 1,
+    "max_qty": 100,
+    "recommended": false,
+    "best_deal": false,
+    "display_item": "cskull:ebda5f31937b2ff755271d97f01be84d52a407b36ca77451856162ac6cfbb34f",
+    "show": true
+  },
+  {
     "id": 1,
     "name": "Coins 5",
     "price": 5000,
